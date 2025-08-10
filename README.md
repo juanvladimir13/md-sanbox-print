@@ -38,11 +38,16 @@ ng serve --port 8081
 Es necesario crear una base de datos llamada testdb, la aplicacion se encarga de crear la tabla
 
 ## Requisitos de Angular 17
-- Node.js ^18.13.0 || ^20.9.0
-- Typescript >=5.2.0 <5.3.0
-- RxJS ^6.5.3 || ^7.4.0
+
+| Tecnologia | Version |
+| ---- | --- |
+| Node.js | ^18.13.0 || ^20.9.0 |
+| Typescript | >=5.2.0 <5.3.0 |
+| RxJS | ^6.5.3 || ^7.4.0 |
 
 ## Requisitos de Sprint Boot
-- Java 17 o superior
-- Maven 3.6.3 or later
-- Postgres 14.0 o later 
+| Tecnologia | Version |
+| ---- | --- |
+| Java | 17 o superior |
+| Maven | 3.6.3 o superior |
+| Postgres  | 14.0 o superior|
