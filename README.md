@@ -45,7 +45,4 @@ Es necesario crear una base de datos llamada testdb, la aplicacion se encarga de
 ## Requisitos de Sprint Boot
 - Java 17 o superior
 - Maven 3.6.3 or later
-- org.springframework.boot 3.3.13
-
-## Postgresql
- 
+- Postgres 14.0 o later 
