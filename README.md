@@ -45,7 +45,7 @@ Es necesario crear una base de datos llamada testdb, la aplicacion se encarga de
 | Typescript | >=5.2.0 <5.3.0 |
 | RxJS | ^6.5.3 || ^7.4.0 |
 
-## Requisitos de Sprint Boot
+## Requisitos de Spring Boot
 | Tecnologia | Version |
 | ---- | --- |
 | Java | 17 o superior |
