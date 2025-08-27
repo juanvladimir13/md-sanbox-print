@@ -4,9 +4,9 @@
 Ingresar a la carpeta del proyecto
 
 ```bash
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085" &
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086" &
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087" &
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085"
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086"
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087"
 ```
 
 ### Configuracion del server nginx
