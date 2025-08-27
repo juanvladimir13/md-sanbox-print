@@ -1,53 +1,57 @@
-# Spring Boot + Angular 17 + PostgreSQL CRUD example
+# Configuracion del backend
 
-Full-stack Angular 17 + Spring Boot + PostgreSQL CRUD Aplicacion Tutorial en el que:
-- Cada Tutorial tiene id, title, description, published status.
-- Podemos crear, obtener, actualizar, borrar Tutorials.
-- Tambien podemos encontrar Tutorials por titulo.
+### Ejecucion de spring boot
+Ingresar a la carpeta del proyecto
 
-![spring-boot-angular-17-postgresql-example-crud.png](spring-boot-angular-17-postgresql-example-crud.png)
-
-Requerimientos:
--Spring Boot
--Angular 17
--PostgreSql
--Port 8081 libre
-
-Para mas detalle, porfavor visite:
-> [Spring Boot + Angular 17 + PostgreSQL: CRUD example](https://www.bezkoder.com/spring-boot-angular-17-postgresql/)
-
-Corra ambos Back-end & Front-end en un solo lugar:
-> [Integrate Angular with Spring Boot Rest API](https://www.bezkoder.com/integrate-angular-spring-boot/)
-
-Mas Practica:
-> [Angular 17 + Spring Boot: File upload example](https://www.bezkoder.com/angular-17-spring-boot-file-upload/)
-
-> [Angular 17 + Spring Boot: JWT Authentication and Authorization example](https://www.bezkoder.com/angular-17-spring-boot-jwt-auth/)
-
-## Run Spring Boot application
+```bash
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085" &
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086" &
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087" &
 ```
-mvn spring-boot:run
+
+### Configuracion del server nginx
+
+```bash
+server {
+        listen 80;
+				server_name _;
+        location /backdev04/ {
+            rewrite ^/backdev04/(.*)$ /$1 break;
+            proxy_pass http://localhost:8085;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+        
+        location /backtest04/ {
+            rewrite ^/backtest04/(.*)$ /$1 break;
+            proxy_pass http://localhost:8086;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+        
+        location /backstaging04/ {
+            rewrite ^/backstaging04/(.*)$ /$1 break;
+            proxy_pass http://localhost:8087;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
 ```
-The Spring Boot Server will export API at port `8081`.
 
-## Run Angular Client
-```
-npm install
-ng serve --port 8081
-```
-Es necesario crear una base de datos llamada testdb, la aplicacion se encarga de crear la tabla
+### Servicios expuestos
+* http://127.0.0.1/backdev04/api/tutorials
+* http://127.0.0.1/backtest04/api/tutorials
+* http://127.0.0.1/backstaging04/api/tutorials
+> Los servicios expuestos se pueden verificar desde un navegador web
 
-## Requisitos de Angular 17
-
-| Tecnologia | Version |
-| ---- | --- |
-| Node.js | ^18.13.0 || ^20.9.0 |
-| Typescript | >=5.2.0 <5.3.0 |
-| RxJS | ^6.5.3 || ^7.4.0 |
-
-## Requisitos de Spring Boot
-| Tecnologia | Version |
-| ---- | --- |
-| Java | 17 o superior |
-| Maven | 3.6.3 o superior |
-| Postgres  | 14.0 o superior|
+## El front debe apuntar a esos dominios
+* http://127.0.0.1/backdev04/
+* http://127.0.0.1/backtest04/
+* http://127.0.0.1/backstaging04/
+> Modificar el **archivo angular-17-client/src/environments/environment.prod.ts** la `apiUrl`, en cada `branch`
