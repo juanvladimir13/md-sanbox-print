@@ -14,7 +14,7 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087" &
 ```bash
 server {
         listen 80;
-				server_name _;
+		server_name _;
         location /backdev04/ {
             rewrite ^/backdev04/(.*)$ /$1 break;
             proxy_pass http://localhost:8085;
