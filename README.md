@@ -8,6 +8,11 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085 -Dspring.app
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086"
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087"
 ```
+### Detener los procesos
+
+```bash
+wmic process where "commandline like '%backdev04%'" call terminate
+```
 
 ### Configuracion del server nginx
 
