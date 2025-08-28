@@ -4,7 +4,7 @@
 Ingresar a la carpeta del proyecto
 
 ```bash
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085"
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085 -Dspring.application.name=backdev04 -Djava.process.name=backdev04"
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086"
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087"
 ```
