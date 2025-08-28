@@ -23,6 +23,10 @@ Ingresar a la carpeta target
 java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8085 -Dspring.application.name=backdev04 -Djava.process.name=backdev04" &
 java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8086 -Dspring.application.name=backtest04 -Djava.process.name=backtest04" &
 java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8087 -Dspring.application.name=backstaging04 -Djava.process.name=backstaging04" &
+
+java -jar -Dspring.application.name=backdev04 -Djava.process.name=backdev04 spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar --server.port=8085 &
+java -jar -Dspring.application.name=backtest04 -Djava.process.name=backtest04 spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar --server.port=8086 &
+java -jar -Dspring.application.name=backstaging04 -Djava.process.name=backstaging04 spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar --server.port=8087 &
 ```
 
 ### Detener los procesos
