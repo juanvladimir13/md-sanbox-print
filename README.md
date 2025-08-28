@@ -65,6 +65,107 @@ server {
 * http://127.0.0.1/backstaging04/api/tutorials
 > Los servicios expuestos se pueden verificar desde un navegador web
 
+# Configuracion del frontend
+### Crear los archivos de environment en la carpeta app/environments
+environment.dev.ts
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8085/',
+};
+```
+
+environment.test.ts
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8086/',
+};
+```
+
+environment.staging.ts
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8087/',
+};
+```
+
+### Agregar configuracion para multiples entornos de angular
+Agregar al archivo `angular.json` en el nodo `configurations` las siguientes configuraciones
+```json
+"dev": {
+  "fileReplacements": [
+	{
+	  "replace": "src/environments/environment.ts",
+	  "with": "src/environments/environment.dev.ts"
+	}
+  ],
+  "budgets": [
+	{
+	  "type": "initial",
+	  "maximumWarning": "500kb",
+	  "maximumError": "1mb"
+	},
+	{
+	  "type": "anyComponentStyle",
+	  "maximumWarning": "2kb",
+	  "maximumError": "4kb"
+	}
+  ],
+  "outputHashing": "all"
+},
+"test": {
+  "fileReplacements": [
+	{
+	  "replace": "src/environments/environment.ts",
+	  "with": "src/environments/environment.test.ts"
+	}
+  ],
+  "budgets": [
+	{
+	  "type": "initial",
+	  "maximumWarning": "500kb",
+	  "maximumError": "1mb"
+	},
+	{
+	  "type": "anyComponentStyle",
+	  "maximumWarning": "2kb",
+	  "maximumError": "4kb"
+	}
+  ],
+  "outputHashing": "all"
+},
+"staging": {
+  "fileReplacements": [
+	{
+	  "replace": "src/environments/environment.ts",
+	  "with": "src/environments/environment.staging.ts"
+	}
+  ],
+  "budgets": [
+	{
+	  "type": "initial",
+	  "maximumWarning": "500kb",
+	  "maximumError": "1mb"
+	},
+	{
+	  "type": "anyComponentStyle",
+	  "maximumWarning": "2kb",
+	  "maximumError": "4kb"
+	}
+  ],
+  "outputHashing": "all"
+}
+```
+
+### Crear artefacto de frontend
+```bash
+ng build --configuration=dev
+ng build --configuration=test
+ng build --configuration=staging
+```
+
 ## El front debe apuntar a esos dominios
 * http://127.0.0.1/backdev04/
 * http://127.0.0.1/backtest04/
