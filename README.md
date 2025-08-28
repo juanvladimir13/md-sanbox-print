@@ -8,14 +8,33 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8085 -Dspring.app
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8086"
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8087"
 ```
+
+### Creacion del artefacto
+Ingresar a la carpeta del proyecto
+
+```bash
+mvn clean
+mvn package
+```
+
+### Ejecucion del artefacto
+Ingresar a la carpeta target
+```bash
+java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8085 -Dspring.application.name=backdev04 -Djava.process.name=backdev04" &
+java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8086 -Dspring.application.name=backtest04 -Djava.process.name=backtest04" &
+java -jar spring-boot-jpa-postgresql-0.0.1-SNAPSHOT.jar -Dspring-boot.run.arguments="--server.port=8087 -Dspring.application.name=backstaging04 -Djava.process.name=backstaging04" &
+```
+
 ### Detener los procesos
+Ejecutar en el powershell
 
 ```bash
 wmic process where "commandline like '%backdev04%'" call terminate
+wmic process where "commandline like '%backtest04%'" call terminate
+wmic process where "commandline like '%backstaging04%'" call terminate
 ```
 
 ### Configuracion del server nginx
-
 ```bash
 server {
         listen 80;
